@@ -1,3 +1,4 @@
+import { BitmexApiService } from 'src/bitmex-api/bitmex-api.service';
 import { WebSocket } from 'ws';
 
 export class BitmexSocketService {
@@ -38,6 +39,6 @@ export class BitmexSocketService {
   }
 
   onSend(message) {
-    this.socket.send(message)
+    this.socket.send(message);
   }
 }

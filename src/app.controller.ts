@@ -1,8 +1,6 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { SubscribeDto } from './suscribe.dto';
-import { connection } from 'ws';
-import { send } from 'process';
 
 @Controller()
 export class AppController {
@@ -15,6 +13,7 @@ export class AppController {
 
   @Post()
   subscribe(@Body() subscribe: SubscribeDto): any {
+    console.log({subscribe})
     this.appService.subscribe(subscribe);
   }
 }
