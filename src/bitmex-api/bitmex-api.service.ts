@@ -19,41 +19,45 @@ export class BitmexApiService {
     return await this.announcementRepository.save(announcement);
   }
 
-  async findAll(filter: FindBitMexApiQueryDto, pagination: FindBitMexApiPaginationDto) {
-
+  async findAll(
+    filter: FindBitMexApiQueryDto,
+    pagination: FindBitMexApiPaginationDto,
+  ) {
     let { search, dateRange } = filter;
 
     let date: FindOperator<Date>;
 
-    if(dateRange) {
-      dateRange.start = new Date(dateRange.start)
-      dateRange.end = new Date(dateRange.end)
+    if (dateRange) {
+      dateRange.start = new Date(dateRange.start);
+      dateRange.end = new Date(dateRange.end);
 
-      date = Between(dateRange.start, dateRange.end)
+      date = Between(dateRange.start, dateRange.end);
     }
 
     const searchFormatted = search ? ILike(`%${search}%`) : search;
 
-    if(pagination.take) pagination.skip = pagination.skip * pagination.take; // Normalize pagination
+    if (pagination.take) pagination.skip = pagination.skip * pagination.take; // Normalize pagination
 
-    let where = search ? [
-      {
-        title: searchFormatted,
-        date
-      },
-      {
-        link: searchFormatted,
-        date
-      },
-      {
-        content: searchFormatted,
-        date
-      },
-    ] : { date }
-    
+    let where = search
+      ? [
+          {
+            title: searchFormatted,
+            date,
+          },
+          {
+            link: searchFormatted,
+            date,
+          },
+          {
+            content: searchFormatted,
+            date,
+          },
+        ]
+      : { date };
+
     return await this.announcementRepository.find({
       where,
-      ...pagination
+      ...pagination,
     });
   }
 

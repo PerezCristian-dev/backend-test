@@ -6,6 +6,7 @@ import { BitmexSocketService } from './bitmex-socket/bitmex-socket.service';
 import { BitmexApiModule } from './bitmex-api/bitmex-api.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { ApiModule } from './api/api.module';
 import Announcement from './bitmex-api/entities/announcement.entity';
 
 @Module({
@@ -26,6 +27,7 @@ import Announcement from './bitmex-api/entities/announcement.entity';
       autoLoadEntities: true,
     }),
     BitmexApiModule,
+    ApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],

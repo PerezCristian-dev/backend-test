@@ -25,11 +25,15 @@ export class BitmexApiController {
   }
 
   @Get()
-  findAll(@Query("filter") filter: string, @Query("pagination") pagination: string ) {
-    
-    const formattedFilter = JSON.parse(filter || "{}") as FindBitMexApiQueryDto;
-    const formattedPagination = JSON.parse(pagination || "{}") as FindBitMexApiPaginationDto;
-    
+  findAll(
+    @Query('filter') filter: string,
+    @Query('pagination') pagination: string,
+  ) {
+    const formattedFilter = JSON.parse(filter || '{}') as FindBitMexApiQueryDto;
+    const formattedPagination = JSON.parse(
+      pagination || '{}',
+    ) as FindBitMexApiPaginationDto;
+
     return this.bitmexApiService.findAll(formattedFilter, formattedPagination);
   }
 
@@ -43,8 +47,6 @@ export class BitmexApiController {
     @Param('id') id: string,
     @Body() updateBitmexApiDto: UpdateBitmexApiDto,
   ) {
-    
-    
     return this.bitmexApiService.update(+id, updateBitmexApiDto);
   }
 
