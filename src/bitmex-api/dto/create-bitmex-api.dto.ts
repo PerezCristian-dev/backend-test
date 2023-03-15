@@ -1,6 +1,5 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
-
 export class CreateBitmexApiDto {
   @IsNotEmpty()
   id: number;

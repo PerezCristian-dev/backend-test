@@ -1,6 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { IsOptional } from 'class-validator';
-
 import { CreateBitmexApiDto } from './create-bitmex-api.dto';
 
 export class UpdateBitmexApiDto extends PartialType(CreateBitmexApiDto) {

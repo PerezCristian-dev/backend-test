@@ -18,7 +18,7 @@ export class Announcement {
   content: string;
 
   @Column()
-  date: string;
+  date: Date;
 }
 
 
